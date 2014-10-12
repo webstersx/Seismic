@@ -1,0 +1,444 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		619040B019EAB0DF006D9368 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 619040AF19EAB0DF006D9368 /* main.m */; };
+		619040B319EAB0DF006D9368 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 619040B219EAB0DF006D9368 /* AppDelegate.m */; };
+		619040B619EAB0DF006D9368 /* Seismic.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 619040B419EAB0DF006D9368 /* Seismic.xcdatamodeld */; };
+		619040B919EAB0DF006D9368 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 619040B819EAB0DF006D9368 /* ViewController.m */; };
+		619040BC19EAB0DF006D9368 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 619040BA19EAB0DF006D9368 /* Main.storyboard */; };
+		619040BE19EAB0DF006D9368 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 619040BD19EAB0DF006D9368 /* Images.xcassets */; };
+		619040C119EAB0DF006D9368 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 619040BF19EAB0DF006D9368 /* LaunchScreen.xib */; };
+		619040CD19EAB0DF006D9368 /* SeismicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 619040CC19EAB0DF006D9368 /* SeismicTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		619040C719EAB0DF006D9368 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 619040A219EAB0DF006D9368 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 619040A919EAB0DF006D9368;
+			remoteInfo = Seismic;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		619040AA19EAB0DF006D9368 /* Seismic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Seismic.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		619040AE19EAB0DF006D9368 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		619040AF19EAB0DF006D9368 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		619040B119EAB0DF006D9368 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		619040B219EAB0DF006D9368 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		619040B519EAB0DF006D9368 /* Seismic.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Seismic.xcdatamodel; sourceTree = "<group>"; };
+		619040B719EAB0DF006D9368 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		619040B819EAB0DF006D9368 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		619040BB19EAB0DF006D9368 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		619040BD19EAB0DF006D9368 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		619040C019EAB0DF006D9368 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		619040C619EAB0DF006D9368 /* SeismicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SeismicTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		619040CB19EAB0DF006D9368 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		619040CC19EAB0DF006D9368 /* SeismicTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SeismicTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		619040A719EAB0DF006D9368 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		619040C319EAB0DF006D9368 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		619040A119EAB0DF006D9368 = {
+			isa = PBXGroup;
+			children = (
+				619040AC19EAB0DF006D9368 /* Seismic */,
+				619040C919EAB0DF006D9368 /* SeismicTests */,
+				619040AB19EAB0DF006D9368 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		619040AB19EAB0DF006D9368 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				619040AA19EAB0DF006D9368 /* Seismic.app */,
+				619040C619EAB0DF006D9368 /* SeismicTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		619040AC19EAB0DF006D9368 /* Seismic */ = {
+			isa = PBXGroup;
+			children = (
+				619040B119EAB0DF006D9368 /* AppDelegate.h */,
+				619040B219EAB0DF006D9368 /* AppDelegate.m */,
+				619040B719EAB0DF006D9368 /* ViewController.h */,
+				619040B819EAB0DF006D9368 /* ViewController.m */,
+				619040BA19EAB0DF006D9368 /* Main.storyboard */,
+				619040BD19EAB0DF006D9368 /* Images.xcassets */,
+				619040BF19EAB0DF006D9368 /* LaunchScreen.xib */,
+				619040B419EAB0DF006D9368 /* Seismic.xcdatamodeld */,
+				619040AD19EAB0DF006D9368 /* Supporting Files */,
+			);
+			path = Seismic;
+			sourceTree = "<group>";
+		};
+		619040AD19EAB0DF006D9368 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				619040AE19EAB0DF006D9368 /* Info.plist */,
+				619040AF19EAB0DF006D9368 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		619040C919EAB0DF006D9368 /* SeismicTests */ = {
+			isa = PBXGroup;
+			children = (
+				619040CC19EAB0DF006D9368 /* SeismicTests.m */,
+				619040CA19EAB0DF006D9368 /* Supporting Files */,
+			);
+			path = SeismicTests;
+			sourceTree = "<group>";
+		};
+		619040CA19EAB0DF006D9368 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				619040CB19EAB0DF006D9368 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		619040A919EAB0DF006D9368 /* Seismic */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 619040D019EAB0DF006D9368 /* Build configuration list for PBXNativeTarget "Seismic" */;
+			buildPhases = (
+				619040A619EAB0DF006D9368 /* Sources */,
+				619040A719EAB0DF006D9368 /* Frameworks */,
+				619040A819EAB0DF006D9368 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Seismic;
+			productName = Seismic;
+			productReference = 619040AA19EAB0DF006D9368 /* Seismic.app */;
+			productType = "com.apple.product-type.application";
+		};
+		619040C519EAB0DF006D9368 /* SeismicTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 619040D319EAB0DF006D9368 /* Build configuration list for PBXNativeTarget "SeismicTests" */;
+			buildPhases = (
+				619040C219EAB0DF006D9368 /* Sources */,
+				619040C319EAB0DF006D9368 /* Frameworks */,
+				619040C419EAB0DF006D9368 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				619040C819EAB0DF006D9368 /* PBXTargetDependency */,
+			);
+			name = SeismicTests;
+			productName = SeismicTests;
+			productReference = 619040C619EAB0DF006D9368 /* SeismicTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		619040A219EAB0DF006D9368 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = "Shawn Webster";
+				TargetAttributes = {
+					619040A919EAB0DF006D9368 = {
+						CreatedOnToolsVersion = 6.0.1;
+					};
+					619040C519EAB0DF006D9368 = {
+						CreatedOnToolsVersion = 6.0.1;
+						TestTargetID = 619040A919EAB0DF006D9368;
+					};
+				};
+			};
+			buildConfigurationList = 619040A519EAB0DF006D9368 /* Build configuration list for PBXProject "Seismic" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 619040A119EAB0DF006D9368;
+			productRefGroup = 619040AB19EAB0DF006D9368 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				619040A919EAB0DF006D9368 /* Seismic */,
+				619040C519EAB0DF006D9368 /* SeismicTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		619040A819EAB0DF006D9368 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				619040BC19EAB0DF006D9368 /* Main.storyboard in Resources */,
+				619040C119EAB0DF006D9368 /* LaunchScreen.xib in Resources */,
+				619040BE19EAB0DF006D9368 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		619040C419EAB0DF006D9368 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		619040A619EAB0DF006D9368 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				619040B319EAB0DF006D9368 /* AppDelegate.m in Sources */,
+				619040B619EAB0DF006D9368 /* Seismic.xcdatamodeld in Sources */,
+				619040B919EAB0DF006D9368 /* ViewController.m in Sources */,
+				619040B019EAB0DF006D9368 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		619040C219EAB0DF006D9368 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				619040CD19EAB0DF006D9368 /* SeismicTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		619040C819EAB0DF006D9368 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 619040A919EAB0DF006D9368 /* Seismic */;
+			targetProxy = 619040C719EAB0DF006D9368 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		619040BA19EAB0DF006D9368 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				619040BB19EAB0DF006D9368 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		619040BF19EAB0DF006D9368 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				619040C019EAB0DF006D9368 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		619040CE19EAB0DF006D9368 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		619040CF19EAB0DF006D9368 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		619040D119EAB0DF006D9368 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Seismic/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		619040D219EAB0DF006D9368 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Seismic/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		619040D419EAB0DF006D9368 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SeismicTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Seismic.app/Seismic";
+			};
+			name = Debug;
+		};
+		619040D519EAB0DF006D9368 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SeismicTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Seismic.app/Seismic";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		619040A519EAB0DF006D9368 /* Build configuration list for PBXProject "Seismic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				619040CE19EAB0DF006D9368 /* Debug */,
+				619040CF19EAB0DF006D9368 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		619040D019EAB0DF006D9368 /* Build configuration list for PBXNativeTarget "Seismic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				619040D119EAB0DF006D9368 /* Debug */,
+				619040D219EAB0DF006D9368 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		619040D319EAB0DF006D9368 /* Build configuration list for PBXNativeTarget "SeismicTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				619040D419EAB0DF006D9368 /* Debug */,
+				619040D519EAB0DF006D9368 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		619040B419EAB0DF006D9368 /* Seismic.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				619040B519EAB0DF006D9368 /* Seismic.xcdatamodel */,
+			);
+			currentVersion = 619040B519EAB0DF006D9368 /* Seismic.xcdatamodel */;
+			path = Seismic.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 619040A219EAB0DF006D9368 /* Project object */;
+}
