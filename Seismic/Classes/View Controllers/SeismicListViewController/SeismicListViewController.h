@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum {
+    
+    kSeismicListDataModeDefault = 0,
+    kSeismicListDataModeDate = kSeismicListDataModeDefault,
+    kSeismicListDataModeMagnitude,
+    kSeismicListDataModeProximity
+    
+} SeismicListDataMode;
+
 @interface SeismicListViewController : UITableViewController
+
+@property (assign, nonatomic) SeismicListDataMode dataMode;
 
 @end

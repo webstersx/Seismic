@@ -40,7 +40,25 @@
 }
 
 - (void) loadData {
-    self.events = [[SeismicDB shared] eventsByMagnitude];
+    
+    SeismicDB *db = [SeismicDB shared];
+    
+    switch (self.dataMode) {
+        case kSeismicListDataModeMagnitude: {
+            self.events = [db eventsByMagnitude];
+            break;
+        }
+        case kSeismicListDataModeProximity: {
+            CLLocation *location = [[[CLLocation alloc] initWithLatitude:0 longitude:0] autorelease];
+            self.events = [db eventsByProximityTo:location];
+            break;
+        }
+        default: {
+            self.events = [db eventsByDate];
+            break;
+        }
+    }
+
 }
 
 - (void)didReceiveMemoryWarning {
