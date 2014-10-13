@@ -42,13 +42,19 @@
         
         //add acceptable content types since they don't specify proper header
         AFJSONResponseSerializer *responseSerializer = [AFJSONResponseSerializer serializer];
-        [responseSerializer setAcceptableContentTypes:[NSSet setWithObjects:@"application/json", @"text/html", @"text/plain", nil]];
+        [responseSerializer setAcceptableContentTypes:[NSSet setWithObjects:
+                                                       @"application/json",
+                                                       @"text/html",
+                                                       @"text/plain", nil]];
         self.api.responseSerializer = responseSerializer;
     }
     
     return self;
 }
 
+/**
+ Executes an update API operation and forwards the earthquake objects from the response forward to the Database
+ */
 - (void) update {
     [self.api GET:@"/api/eqs/" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
@@ -60,7 +66,6 @@
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
-        
     }];
 }
 
