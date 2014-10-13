@@ -7,8 +7,18 @@
 //
 
 #import "SeismicViewController.h"
+#import "SeismicListViewController.h"
+
+#define kSeismicDataModeTitleKey @"kSeismicDataModeTitleKey"
+#define kSeismicDataModeSegueKey @"kSeismicDataModeSegueKey"
+#define kSeismicDataModeModeKey @"kSeismicDataModeControllerKey"
+
+#define kSeismicListSegue @"kSeismicListSegue"
+#define kSeismicGridSegue @"kSeismicGridSegue"
 
 @interface SeismicViewController ()
+
+@property (strong, nonatomic) NSArray *modes;
 
 @end
 
@@ -22,6 +32,22 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    self.title = @"Seismic";
+    
+    self.modes = [NSArray arrayWithObjects:
+                  @{kSeismicDataModeTitleKey:@"List - Date descending",
+                    kSeismicDataModeSegueKey:kSeismicListSegue,
+                    kSeismicDataModeModeKey:@(kSeismicListDataModeDate)},
+                  
+                  @{kSeismicDataModeTitleKey:@"List - Magnitude descending",
+                    kSeismicDataModeSegueKey:kSeismicListSegue,
+                    kSeismicDataModeModeKey:@(kSeismicListDataModeMagnitude)},
+                  
+                  @{kSeismicDataModeTitleKey:@"List - Nearest to me",
+                    kSeismicDataModeSegueKey:kSeismicListSegue,
+                    kSeismicDataModeModeKey:@(kSeismicListDataModeProximity)},
+                  nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -32,69 +58,67 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return self.modes.count;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    static NSString *kCellReuseIdentifier = @"SeismicDataModeCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellReuseIdentifier forIndexPath:indexPath];
+
+    //shouldn't happen thanks to the black magic of storyboarding and prototype cells, but just in case
+    if (!cell) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                       reuseIdentifier:kCellReuseIdentifier] autorelease];
+    }
     
-    // Configure the cell...
+    //additional cell setup
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    NSDictionary *mode = self.modes[indexPath.row];
+    
+    cell.textLabel.text = mode[kSeismicDataModeTitleKey];
     
     return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSDictionary *mode = self.modes[indexPath.row];
+    
+    NSString *segueIdentifier = mode[kSeismicDataModeSegueKey];
+
+    if ([segueIdentifier isEqualToString:kSeismicListSegue]) {
+        [self performSegueWithIdentifier:segueIdentifier sender:mode];
+    } else if ([segueIdentifier isEqualToString:kSeismicGridSegue]) {
+        
+    } else {
+        //I don't know how to perform this segue
+    }
+    
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    if ([segue.identifier isEqualToString:kSeismicListSegue]) {
+        SeismicListViewController *listViewController = (SeismicListViewController*)segue.destinationViewController;
+        
+        NSDictionary *dataMode = (NSDictionary*)sender;
+        SeismicListDataMode mode = (SeismicListDataMode)[dataMode[kSeismicDataModeModeKey] integerValue];
+        [listViewController setDataMode:mode];
+
+    }
+    
 }
-*/
 
 @end
