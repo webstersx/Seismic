@@ -16,8 +16,8 @@
 - (void) update:(NSArray*)events;
 
 - (NSArray*) events;
-- (NSArray*) eventsByTime;
+- (NSArray*) eventsByDate;
 - (NSArray*) eventsByMagnitude;
-- (NSArray*) eventsByProximityTo:(CLLocationCoordinate2D)coordinate;
+- (NSArray*) eventsByProximityTo:(CLLocation*)location;
 
 @end

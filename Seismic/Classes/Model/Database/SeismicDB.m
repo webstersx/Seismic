@@ -66,21 +66,29 @@
 
 /*! Returns all events sorted Date descending
  */
-- (NSArray*) eventsByTime {
+- (NSArray*) eventsByDate {
     return [self events];
 }
 
-/*! Returns all events sorted Magnitude descending
+/**
+ Returns all events sorted Magnitude descending
+ 
+ @see - eventsByDate
+ @see - eventsByProximityTo:(CLLocation*)location
  */
 - (NSArray*) eventsByMagnitude {
     return [[self events] sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"magnitude" ascending:NO]]];
 }
 
 //TODO: implement proximity filtering
-/*! Returns all events sorted by Proximity to coordinate ascending
- \param the lat/lon of coordinate to compare to
+/**
+ Returns all events sorted by Proximity to coordinate ascending
+ 
+ @param the lat/lon of coordinate to compare to
+ @see - eventsByMagnitude
+ @see - eventsByDate
  */
-- (NSArray*) eventsByProximityTo:(CLLocationCoordinate2D)coordinate {
+- (NSArray*) eventsByProximityTo:(CLLocation*)location {
     return [self events];
 }
 
