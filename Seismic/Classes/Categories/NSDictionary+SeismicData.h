@@ -1,0 +1,15 @@
+//
+//  NSDictionary+SeismicData.h
+//  Seismic
+//
+//  Created by Shawn Webster on 2014-10-13.
+//  Copyright (c) 2014 Shawn Webster. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface NSDictionary (SeismicData)
+
+- (NSDictionary*) seismicized;
+
+@end
