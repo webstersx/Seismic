@@ -53,6 +53,7 @@
         _sharedFormatter = [[NSNumberFormatter alloc] init];
         [_sharedFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
         [_sharedFormatter setGroupingSeparator:@","];
+        //note: doesn't handle negatives -- NSValueTransformer feels like the better option
         [_sharedFormatter setPositiveSuffix:@"km away"];
     });
     
@@ -78,6 +79,9 @@
     
     self.lblRegion.text = event.region;
     
+    //show either distance or time
+    //NOTE: it might be a better choice to use an NSValueTransformer for these to give
+    //more flexibility of how it's displayed with less logic in the cell / categories
     if (!self.showDistance) {
         NSDate *date = [self.sharedDateFormatter dateFromString:event.timedate];
         self.lblTime.text = [date timeAgo];
