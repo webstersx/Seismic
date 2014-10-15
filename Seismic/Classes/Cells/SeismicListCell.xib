@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="14A386a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -12,7 +13,44 @@
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KkI-b5-kO8" userLabel="lblMagnitude">
+                        <rect key="frame" x="8" y="5" width="39" height="33.5"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="149" verticalHuggingPriority="251" text="Melbourne, Australia" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Ari-cj-SlA" userLabel="lblRegion">
+                        <rect key="frame" x="57" y="0.0" width="212.5" height="44"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="44" id="oib-MW-3Ll"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time ago" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vSX-Iw-Nas" userLabel="lblTime">
+                        <rect key="frame" x="266" y="27" width="43.5" height="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="vSX-Iw-Nas" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailing" constant="-10" id="3cb-Kj-beS"/>
+                    <constraint firstItem="KkI-b5-kO8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="EAP-8z-dUP"/>
+                    <constraint firstItem="Ari-cj-SlA" firstAttribute="centerY" secondItem="KkI-b5-kO8" secondAttribute="centerY" constant="-0.5" id="KI8-SQ-jIC"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="vSX-Iw-Nas" secondAttribute="bottom" constant="-3.5" id="PqP-3S-4ng"/>
+                    <constraint firstItem="Ari-cj-SlA" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailing" constant="-50" id="hEG-0n-61N"/>
+                    <constraint firstAttribute="centerY" secondItem="KkI-b5-kO8" secondAttribute="centerY" constant="0.25" id="i3C-Lj-8cP"/>
+                    <constraint firstItem="Ari-cj-SlA" firstAttribute="leading" secondItem="KkI-b5-kO8" secondAttribute="trailing" constant="10" id="pai-lh-Kib"/>
+                </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="lblMagnitude" destination="KkI-b5-kO8" id="ZfZ-k7-HhK"/>
+                <outlet property="lblRegion" destination="Ari-cj-SlA" id="x0L-O9-34e"/>
+                <outlet property="lblTime" destination="vSX-Iw-Nas" id="3ft-70-PIH"/>
+            </connections>
         </tableViewCell>
     </objects>
 </document>
