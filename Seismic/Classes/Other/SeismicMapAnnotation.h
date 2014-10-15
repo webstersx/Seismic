@@ -7,7 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MapKit/MapKit.h>
+@class Earthquake;
 
-@interface SeismicMapAnnotation : NSObject
+@interface SeismicMapAnnotation : NSObject <MKAnnotation>
+
+@property (strong, nonatomic) Earthquake *event;
 
 @end
