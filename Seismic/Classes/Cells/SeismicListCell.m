@@ -16,22 +16,20 @@
 @property (strong, nonatomic) IBOutlet UILabel *lblRegion;
 @property (strong, nonatomic) IBOutlet UILabel *lblTime;
 
-+ (NSDateFormatter*) sharedDateFormatter;
+- (NSDateFormatter*) sharedDateFormatter;
+- (NSNumberFormatter*) sharedNumberFormatter;
 
 @end
 
 @implementation SeismicListCell
 
-- (void)awakeFromNib {
-    // Initialization code
+- (void) dealloc {
+    _event = nil;
+    [_lblMagnitude release];
+    [_lblRegion release];
+    [_lblTime release];
     
-    self.event = self.event;
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    [super dealloc];
 }
 
 - (NSDateFormatter*) sharedDateFormatter
@@ -42,6 +40,20 @@
     dispatch_once(&oncePredicate, ^{
         _sharedFormatter = [[NSDateFormatter alloc] init];
         _sharedFormatter.dateFormat = @"yyyy-MM-dd' 'HH:mm:ss";
+    });
+    
+    return _sharedFormatter;
+}
+
+- (NSNumberFormatter*) sharedNumberFormatter
+{
+    static NSNumberFormatter *_sharedFormatter = nil;
+    static dispatch_once_t oncePredicate;
+    dispatch_once(&oncePredicate, ^{
+        _sharedFormatter = [[NSNumberFormatter alloc] init];
+        [_sharedFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+        [_sharedFormatter setGroupingSeparator:@","];
+        [_sharedFormatter setPositiveSuffix:@"km away"];
     });
     
     return _sharedFormatter;
@@ -66,8 +78,13 @@
     
     self.lblRegion.text = event.region;
     
-    NSDate *date = [self.sharedDateFormatter dateFromString:event.timedate];
-    self.lblTime.text = [date timeAgo];
+    if (!self.showDistance) {
+        NSDate *date = [self.sharedDateFormatter dateFromString:event.timedate];
+        self.lblTime.text = [date timeAgo];
+    } else {
+        NSNumber *km = @(event.distance.integerValue / 1000);
+        self.lblTime.text = [[self sharedNumberFormatter] stringFromNumber:km];
+    }
     
     
 }

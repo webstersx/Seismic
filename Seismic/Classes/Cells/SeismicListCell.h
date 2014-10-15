@@ -17,5 +17,6 @@
 
 @property (unsafe_unretained, nonatomic) Earthquake *event;
 
+@property (assign, nonatomic) BOOL showDistance;
 
 @end
