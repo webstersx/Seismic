@@ -14,10 +14,11 @@
 #import "Earthquake.h"
 
 
-@interface SeismicListViewController ()
+@interface SeismicListViewController () <CLLocationManagerDelegate>
 
 @property (strong, nonatomic) NSArray *events;
 @property (strong, nonatomic) CLLocationManager *locationManager;
+@property (assign, nonatomic) BOOL showDistance;
 
 @end
 
@@ -40,26 +41,31 @@
     
     switch (self.dataMode) {
         case kSeismicListDataModeMagnitude: {
+            self.title = @"Events by Strength";
             self.events = [db eventsByMagnitude];
             break;
         }
         case kSeismicListDataModeProximity: {
-            CLLocation *location = [[[CLLocation alloc] initWithLatitude:0 longitude:0] autorelease];
-            self.events = [db eventsByProximityTo:location];
+            self.title = @"Nearest to Me";
+            BOOL startLocationServices = [self attemptLocationServicesPermissions];
+            
+            if (startLocationServices) {
+                [self.locationManager startUpdatingLocation];
+            } else {
+                CLLocation *location = [[[CLLocation alloc] initWithLatitude:0 longitude:0] autorelease];
+                [self updateEventsWithLocation:location];
+            }
             break;
         }
         default: {
-            
+            self.title = @"Most Recent Events";
             self.events = [db eventsByDate];
             break;
         }
     }
+    
+    self.showDistance = self.dataMode == kSeismicListDataModeProximity;
 
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -88,8 +94,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     // Configure the cell...
     SeismicListCell *cell = [self.tableView dequeueReusableCellWithIdentifier:kSeismicListCellIdentifier];
-    
+
     //give the cell the event, let it handle presentation for itself
+    cell.showDistance = self.showDistance;    
     cell.event = self.events[indexPath.row];
     
     return cell;
@@ -100,11 +107,126 @@
 }
 
 - (void) dealloc {
+    [_locationManager stopUpdatingLocation];
+    [_locationManager setDelegate:nil];
+    [_locationManager release];
+    _locationManager = nil;
     
     [_events release];
     _events = nil;
     
     [super dealloc];
 }
+
+#pragma mark - Location Services
+
+- (CLLocationManager*) locationManager {
+    if (!_locationManager) {
+        self.locationManager = [[CLLocationManager alloc] init];
+        self.locationManager.delegate = self;
+    }
+    
+    return _locationManager;
+}
+
+- (BOOL) attemptLocationServicesPermissions {
+    CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
+    
+    switch (status) {
+        case kCLAuthorizationStatusAuthorizedAlways:
+        case kCLAuthorizationStatusAuthorizedWhenInUse:
+        {
+            //all is good
+            return YES;
+            break;
+        }
+            
+        case kCLAuthorizationStatusDenied:
+        case kCLAuthorizationStatusRestricted:
+        {
+            [[[UIAlertView alloc] initWithTitle:@"Oops!" message:@"We don't seem to have permission to use your location. Please go to the Settings app and allow Seismic under Location Services" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] show];
+        }
+            
+        case kCLAuthorizationStatusNotDetermined:
+        {
+            
+            //requires Plist key: NSLocationWhenInUseUsageDescription
+            if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8) {
+                //special handling; don't request too much permissions or the user will probably reject
+                [self.locationManager requestWhenInUseAuthorization];
+            } else {
+                [self.locationManager startUpdatingLocation];
+                self.locationManager.delegate = self;
+            }
+            
+            break;
+        }
+    }
+    
+    return NO;
+}
+
+
+- (void) locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
+    
+    switch (status) {
+        case kCLAuthorizationStatusAuthorizedAlways:
+        case kCLAuthorizationStatusAuthorizedWhenInUse:
+        {
+            [self.locationManager startUpdatingLocation];
+            break;
+        }
+            
+        case kCLAuthorizationStatusDenied:
+        case kCLAuthorizationStatusRestricted:
+        case kCLAuthorizationStatusNotDetermined:
+        {
+            //ignore these status changes
+            break;
+        }
+    }
+}
+
+- (void) locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    
+    //get the most recent location
+    CLLocation *location = [locations lastObject];
+    
+    //decide some arbitrary precision: 10km square
+    if (location.horizontalAccuracy < 100000 &&
+        location.verticalAccuracy < 10000) {
+        
+        
+        //stop checking for location, this is good enough -- don't drain the battery and free up some resources
+        [self.locationManager stopUpdatingLocation];
+        [_locationManager release];
+        _locationManager = nil;
+        
+        [self updateEventsWithLocation:location];
+        
+    }
+    
+}
+
+- (void) updateEventsWithLocation:(CLLocation*)location {
+    [_events release];
+    _events = nil;
+    [self.tableView reloadData];
+    
+    //push to a background thread
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        //update the distances in the background and wait until done
+        [[SeismicDB shared] updateDistanceFromLocation:location];
+        
+        //then refresh ui on main thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [_events release];
+            self.events = [[SeismicDB shared] eventsByDistanceFrom:location];
+            [self.tableView reloadData];
+        });
+        
+    });
+}
+
 
 @end
