@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:Seismic/Classes/Model/Database/Entities/Earthquake.h">
+   </FileRef>
+   <FileRef
+      location = "group:Seismic/Classes/Model/Database/Entities/Earthquake.m">
+   </FileRef>
+   <FileRef
       location = "group:Seismic.xcodeproj">
    </FileRef>
    <FileRef

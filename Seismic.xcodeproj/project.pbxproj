@@ -23,9 +23,9 @@
 		619040E019EAB251006D9368 /* SeismicListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 619040DE19EAB251006D9368 /* SeismicListCell.xib */; };
 		619040E819EABEC1006D9368 /* SeismicDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 619040E719EABEC1006D9368 /* SeismicDB.m */; };
 		619040ED19EABEE0006D9368 /* SeismicAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 619040EC19EABEE0006D9368 /* SeismicAPI.m */; };
-		619040F219EAC4A0006D9368 /* Earthquake.m in Sources */ = {isa = PBXBuildFile; fileRef = 619040F119EAC4A0006D9368 /* Earthquake.m */; };
 		619040F519EAC4F7006D9368 /* NSDictionary+SeismicData.m in Sources */ = {isa = PBXBuildFile; fileRef = 619040F419EAC4F7006D9368 /* NSDictionary+SeismicData.m */; };
 		619040FD19EBC5B2006D9368 /* SeismicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 619040FC19EBC5B2006D9368 /* SeismicViewController.m */; };
+		61B0D0C019EEA21A006EF7F0 /* Earthquake.m in Sources */ = {isa = PBXBuildFile; fileRef = 61B0D0BF19EEA21A006EF7F0 /* Earthquake.m */; };
 		792622B1C30F8EC562275FA9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A659FAE71117B6F39928E0C /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -70,12 +70,13 @@
 		619040E719EABEC1006D9368 /* SeismicDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SeismicDB.m; path = Classes/Model/Database/SeismicDB.m; sourceTree = "<group>"; };
 		619040EB19EABEE0006D9368 /* SeismicAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeismicAPI.h; sourceTree = "<group>"; };
 		619040EC19EABEE0006D9368 /* SeismicAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeismicAPI.m; sourceTree = "<group>"; };
-		619040F019EAC4A0006D9368 /* Earthquake.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Earthquake.h; path = Classes/Model/Database/Entities/Earthquake.h; sourceTree = "<group>"; };
-		619040F119EAC4A0006D9368 /* Earthquake.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Earthquake.m; path = Classes/Model/Database/Entities/Earthquake.m; sourceTree = "<group>"; };
 		619040F319EAC4F7006D9368 /* NSDictionary+SeismicData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+SeismicData.h"; path = "Classes/Categories/NSDictionary+SeismicData.h"; sourceTree = "<group>"; };
 		619040F419EAC4F7006D9368 /* NSDictionary+SeismicData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+SeismicData.m"; path = "Classes/Categories/NSDictionary+SeismicData.m"; sourceTree = "<group>"; };
 		619040FB19EBC5B2006D9368 /* SeismicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SeismicViewController.h; path = "Classes/View Controllers/SeismicViewController/SeismicViewController.h"; sourceTree = "<group>"; };
 		619040FC19EBC5B2006D9368 /* SeismicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SeismicViewController.m; path = "Classes/View Controllers/SeismicViewController/SeismicViewController.m"; sourceTree = "<group>"; };
+		61B0D0BD19EEA176006EF7F0 /* Seismic 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Seismic 2.xcdatamodel"; sourceTree = "<group>"; };
+		61B0D0BE19EEA21A006EF7F0 /* Earthquake.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Earthquake.h; path = Classes/Model/Database/Entities/Earthquake.h; sourceTree = "<group>"; };
+		61B0D0BF19EEA21A006EF7F0 /* Earthquake.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Earthquake.m; path = Classes/Model/Database/Entities/Earthquake.m; sourceTree = "<group>"; };
 		FEB7F1EF09CD4320041EFE10 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -243,8 +244,8 @@
 		619040EF19EAC488006D9368 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				619040F019EAC4A0006D9368 /* Earthquake.h */,
-				619040F119EAC4A0006D9368 /* Earthquake.m */,
+				61B0D0BE19EEA21A006EF7F0 /* Earthquake.h */,
+				61B0D0BF19EEA21A006EF7F0 /* Earthquake.m */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -428,13 +429,13 @@
 				619040ED19EABEE0006D9368 /* SeismicAPI.m in Sources */,
 				612B45B419EE914500C28709 /* SeismicMapAnnotation.m in Sources */,
 				612B45AE19EE8E4E00C28709 /* SeismicMapViewController.m in Sources */,
-				619040F219EAC4A0006D9368 /* Earthquake.m in Sources */,
 				619040B619EAB0DF006D9368 /* Seismic.xcdatamodeld in Sources */,
 				619040F519EAC4F7006D9368 /* NSDictionary+SeismicData.m in Sources */,
 				619040D819EAB20A006D9368 /* SeismicListViewController.m in Sources */,
 				619040DF19EAB251006D9368 /* SeismicListCell.m in Sources */,
 				619040E819EABEC1006D9368 /* SeismicDB.m in Sources */,
 				612B45AB19EE860B00C28709 /* NSDate+TimeAgo.m in Sources */,
+				61B0D0C019EEA21A006EF7F0 /* Earthquake.m in Sources */,
 				619040B019EAB0DF006D9368 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -647,9 +648,10 @@
 		619040B419EAB0DF006D9368 /* Seismic.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				61B0D0BD19EEA176006EF7F0 /* Seismic 2.xcdatamodel */,
 				619040B519EAB0DF006D9368 /* Seismic.xcdatamodel */,
 			);
-			currentVersion = 619040B519EAB0DF006D9368 /* Seismic.xcdatamodel */;
+			currentVersion = 61B0D0BD19EEA176006EF7F0 /* Seismic 2.xcdatamodel */;
 			path = Seismic.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

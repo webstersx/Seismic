@@ -1,9 +1,9 @@
 //
 //  Earthquake.m
-//  Seismic
+//  
 //
-//  Created by Shawn Webster on 2014-10-13.
-//  Copyright (c) 2014 Shawn Webster. All rights reserved.
+//  Created by Shawn Webster on 2014-10-15.
+//
 //
 
 #import "Earthquake.h"
@@ -12,6 +12,7 @@
 @implementation Earthquake
 
 @dynamic depth;
+@dynamic distance;
 @dynamic eqid;
 @dynamic lat;
 @dynamic lon;

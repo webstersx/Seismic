@@ -1,9 +1,9 @@
 //
 //  Earthquake.h
-//  Seismic
+//  
 //
-//  Created by Shawn Webster on 2014-10-13.
-//  Copyright (c) 2014 Shawn Webster. All rights reserved.
+//  Created by Shawn Webster on 2014-10-15.
+//
 //
 
 #import <Foundation/Foundation.h>
@@ -13,6 +13,7 @@
 @interface Earthquake : NSManagedObject
 
 @property (nonatomic, retain) NSNumber * depth;
+@property (nonatomic, retain) NSNumber * distance;
 @property (nonatomic, retain) NSString * eqid;
 @property (nonatomic, retain) NSNumber * lat;
 @property (nonatomic, retain) NSNumber * lon;
