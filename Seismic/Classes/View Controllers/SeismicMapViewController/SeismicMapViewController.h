@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class Earthquake;
+
 @interface SeismicMapViewController : UIViewController
+
+@property (strong, nonatomic) Earthquake *event;
 
 @end

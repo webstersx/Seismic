@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A386a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="uDV-gW-tw3">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -29,14 +30,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="ABg-5Y-NL5">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ABg-5Y-NL5" id="ziH-53-lSX">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="fCF-k7-Hq1" id="41P-Hm-wiZ"/>
                             <outlet property="delegate" destination="fCF-k7-Hq1" id="at2-7H-6sl"/>
@@ -45,10 +38,51 @@
                     <navigationItem key="navigationItem" id="axo-4u-vp7"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="568"/>
+                    <connections>
+                        <segue destination="4am-Ex-ZdT" kind="show" identifier="MapEvent" id="PBB-yn-rIE"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AlB-Qr-kSy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-140" y="324"/>
+        </scene>
+        <!--Seismic Map View Controller-->
+        <scene sceneID="u7I-aS-SAA">
+            <objects>
+                <viewController id="4am-Ex-ZdT" customClass="SeismicMapViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VBd-dT-pJP"/>
+                        <viewControllerLayoutGuide type="bottom" id="SN3-GG-Hgy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Hz9-dn-qCl">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="N00-sQ-MS7">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <connections>
+                                    <outlet property="delegate" destination="4am-Ex-ZdT" id="7n5-vZ-1WW"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="N00-sQ-MS7" firstAttribute="top" secondItem="VBd-dT-pJP" secondAttribute="bottom" id="15U-bo-HKA"/>
+                            <constraint firstItem="SN3-GG-Hgy" firstAttribute="top" secondItem="N00-sQ-MS7" secondAttribute="bottom" id="2BE-9f-IeD"/>
+                            <constraint firstItem="N00-sQ-MS7" firstAttribute="leading" secondItem="Hz9-dn-qCl" secondAttribute="leadingMargin" constant="-16" id="MLo-i6-LwX"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="N00-sQ-MS7" secondAttribute="trailing" constant="-16" id="izd-ID-Uk5"/>
+                        </constraints>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="568"/>
+                    <connections>
+                        <outlet property="mapView" destination="N00-sQ-MS7" id="cKV-Ji-Qlg"/>
+                        <outlet property="view" destination="N00-sQ-MS7" id="Ws4-ib-OuG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gmx-BG-ftN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-140" y="1114"/>
         </scene>
         <!--Seismic View Controller-->
         <scene sceneID="kc9-a4-Iab">
@@ -76,6 +110,7 @@
                     <size key="freeformSize" width="320" height="568"/>
                     <connections>
                         <segue destination="fCF-k7-Hq1" kind="show" identifier="kSeismicListSegue" id="cdE-tU-Ow2"/>
+                        <segue destination="4am-Ex-ZdT" kind="show" identifier="kSeismicMapSegue" id="eER-Ji-VWO"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sjg-0I-T8H" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -83,4 +118,7 @@
             <point key="canvasLocation" x="-507" y="324"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="PBB-yn-rIE"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		612B45AB19EE860B00C28709 /* NSDate+TimeAgo.m in Sources */ = {isa = PBXBuildFile; fileRef = 612B45AA19EE860B00C28709 /* NSDate+TimeAgo.m */; };
+		612B45AE19EE8E4E00C28709 /* SeismicMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 612B45AD19EE8E4E00C28709 /* SeismicMapViewController.m */; };
+		612B45B019EE908D00C28709 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 612B45AF19EE908D00C28709 /* MapKit.framework */; };
+		612B45B419EE914500C28709 /* SeismicMapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 612B45B319EE914500C28709 /* SeismicMapAnnotation.m */; };
 		619040B019EAB0DF006D9368 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 619040AF19EAB0DF006D9368 /* main.m */; };
 		619040B319EAB0DF006D9368 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 619040B219EAB0DF006D9368 /* AppDelegate.m */; };
 		619040B619EAB0DF006D9368 /* Seismic.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 619040B419EAB0DF006D9368 /* Seismic.xcdatamodeld */; };
@@ -38,6 +42,13 @@
 /* Begin PBXFileReference section */
 		3A659FAE71117B6F39928E0C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F150EA2D29BCDBC74AD2367 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		612B45A919EE860B00C28709 /* NSDate+TimeAgo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+TimeAgo.h"; path = "Classes/Categories/NSDate+TimeAgo.h"; sourceTree = "<group>"; };
+		612B45AA19EE860B00C28709 /* NSDate+TimeAgo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+TimeAgo.m"; path = "Classes/Categories/NSDate+TimeAgo.m"; sourceTree = "<group>"; };
+		612B45AC19EE8E4E00C28709 /* SeismicMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SeismicMapViewController.h; path = "Classes/View Controllers/SeismicMapViewController/SeismicMapViewController.h"; sourceTree = "<group>"; };
+		612B45AD19EE8E4E00C28709 /* SeismicMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SeismicMapViewController.m; path = "Classes/View Controllers/SeismicMapViewController/SeismicMapViewController.m"; sourceTree = "<group>"; };
+		612B45AF19EE908D00C28709 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		612B45B219EE914500C28709 /* SeismicMapAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SeismicMapAnnotation.h; path = Classes/Other/SeismicMapAnnotation.h; sourceTree = "<group>"; };
+		612B45B319EE914500C28709 /* SeismicMapAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SeismicMapAnnotation.m; path = Classes/Other/SeismicMapAnnotation.m; sourceTree = "<group>"; };
 		619040AA19EAB0DF006D9368 /* Seismic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Seismic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		619040AE19EAB0DF006D9368 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		619040AF19EAB0DF006D9368 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -73,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				612B45B019EE908D00C28709 /* MapKit.framework in Frameworks */,
 				792622B1C30F8EC562275FA9 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -87,6 +99,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		612B45B119EE911200C28709 /* SeismicMapViewController */ = {
+			isa = PBXGroup;
+			children = (
+				612B45AC19EE8E4E00C28709 /* SeismicMapViewController.h */,
+				612B45AD19EE8E4E00C28709 /* SeismicMapViewController.m */,
+				612B45B219EE914500C28709 /* SeismicMapAnnotation.h */,
+				612B45B319EE914500C28709 /* SeismicMapAnnotation.m */,
+			);
+			name = SeismicMapViewController;
+			sourceTree = "<group>";
+		};
 		619040A119EAB0DF006D9368 = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +135,7 @@
 			children = (
 				619040B119EAB0DF006D9368 /* AppDelegate.h */,
 				619040B219EAB0DF006D9368 /* AppDelegate.m */,
+				619040F619EAC50F006D9368 /* Categories */,
 				619040E919EABED0006D9368 /* Model */,
 				619040DB19EAB22B006D9368 /* Cells */,
 				619040DA19EAB21A006D9368 /* View Controllers */,
@@ -163,6 +187,7 @@
 			children = (
 				619040FA19EBC591006D9368 /* SeismicViewController */,
 				619040D919EAB212006D9368 /* SeismicListViewController */,
+				612B45B119EE911200C28709 /* SeismicMapViewController */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -209,7 +234,6 @@
 		619040EE19EAC47E006D9368 /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
-				619040F619EAC50F006D9368 /* Helpers */,
 				619040EF19EAC488006D9368 /* Entities */,
 				619040B419EAB0DF006D9368 /* Seismic.xcdatamodeld */,
 			);
@@ -225,13 +249,15 @@
 			name = Entities;
 			sourceTree = "<group>";
 		};
-		619040F619EAC50F006D9368 /* Helpers */ = {
+		619040F619EAC50F006D9368 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				612B45A919EE860B00C28709 /* NSDate+TimeAgo.h */,
+				612B45AA19EE860B00C28709 /* NSDate+TimeAgo.m */,
 				619040F319EAC4F7006D9368 /* NSDictionary+SeismicData.h */,
 				619040F419EAC4F7006D9368 /* NSDictionary+SeismicData.m */,
 			);
-			name = Helpers;
+			name = Categories;
 			sourceTree = "<group>";
 		};
 		619040FA19EBC591006D9368 /* SeismicViewController */ = {
@@ -255,6 +281,7 @@
 		7A82C290D29CCB6052497D6E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				612B45AF19EE908D00C28709 /* MapKit.framework */,
 				3A659FAE71117B6F39928E0C /* libPods.a */,
 			);
 			name = Frameworks;
@@ -399,12 +426,15 @@
 				619040FD19EBC5B2006D9368 /* SeismicViewController.m in Sources */,
 				619040B319EAB0DF006D9368 /* AppDelegate.m in Sources */,
 				619040ED19EABEE0006D9368 /* SeismicAPI.m in Sources */,
+				612B45B419EE914500C28709 /* SeismicMapAnnotation.m in Sources */,
+				612B45AE19EE8E4E00C28709 /* SeismicMapViewController.m in Sources */,
 				619040F219EAC4A0006D9368 /* Earthquake.m in Sources */,
 				619040B619EAB0DF006D9368 /* Seismic.xcdatamodeld in Sources */,
 				619040F519EAC4F7006D9368 /* NSDictionary+SeismicData.m in Sources */,
 				619040D819EAB20A006D9368 /* SeismicListViewController.m in Sources */,
 				619040DF19EAB251006D9368 /* SeismicListCell.m in Sources */,
 				619040E819EABEC1006D9368 /* SeismicDB.m in Sources */,
+				612B45AB19EE860B00C28709 /* NSDate+TimeAgo.m in Sources */,
 				619040B019EAB0DF006D9368 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
