@@ -24,7 +24,9 @@
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
+
 - (void) update:(NSArray *)events inContext:(NSManagedObjectContext*)temporaryContext;
+- (NSManagedObject*) entity:(NSString*)entity inContext:(NSManagedObjectContext*)context withValue:(id)value forKey:(NSString*)key;
 
 @end
 
@@ -54,6 +56,10 @@
 
 #pragma mark - Data reading
 /*! Returns all events - not sorted
+ 
+ @see - eventsByDate
+ @see - eventsByMagnitude
+ @see - eventsByProximityTo:(CLLocation*)location
  */
 - (NSArray*) events {
     NSFetchRequest *r = [NSFetchRequest fetchRequestWithEntityName:@"Earthquake"];
@@ -65,6 +71,10 @@
 }
 
 /*! Returns all events sorted Date descending
+ 
+ @see - events
+ @see - eventsByMagnitude
+ @see - eventsByProximityTo:(CLLocation*)location
  */
 - (NSArray*) eventsByDate {
     return [self events];
@@ -73,6 +83,7 @@
 /**
  Returns all events sorted Magnitude descending
  
+ @see - events
  @see - eventsByDate
  @see - eventsByProximityTo:(CLLocation*)location
  */
@@ -85,6 +96,7 @@
  Returns all events sorted by Proximity to coordinate ascending
  
  @param the lat/lon of coordinate to compare to
+ @see - events
  @see - eventsByMagnitude
  @see - eventsByDate
  */
@@ -93,7 +105,9 @@
 }
 
 #pragma mark - Data writing
-
+/**
+ Forwards the events to a temporary context to update the into the database
+ */
 - (void) update:(NSArray*)events {
     
     //get a temporary context to work in
@@ -115,9 +129,10 @@
     }];
 }
 
-/*! Performs the DB update
- \param events - the events to be added/inserted into the context
- \param temporaryContext - the temporary context in which to insert the objects
+/*! 
+ Performs the DB update
+ @param events - the events to be added/inserted into the context
+ @param temporaryContext - the temporary context in which to insert the objects
  */
 - (void) update:(NSArray*)events inContext:(NSManagedObjectContext*)temporaryContext {
     //we must have a context, it must not be the main context, and it must have a parent
@@ -190,10 +205,10 @@
 }
 
 /*! Find the first of a specific entity in the context
- \param entity - the entity name
- \param context - the context to search in
- \param value - the value to search
- \param key - the key to search on
+ @param entity - the entity name
+ @param context - the context to search in
+ @param value - the value to search
+ @param key - the key to search on
  */
 - (NSManagedObject*) entity:(NSString*)entity
                   inContext:(NSManagedObjectContext*)context
@@ -220,7 +235,8 @@
 
 #pragma mark - Database Concurrency
 
-/*! Returns a temporary context with which write operations can be performed
+/*! 
+ Returns a temporary context with which write operations can be performed
  */
 - (NSManagedObjectContext*) temporaryContext {
     //main context must exist
@@ -232,8 +248,9 @@
     return temporaryContext;
 }
 
-/*! Saves the temporary context and propogates the change upwards to the parent context
- \param temporaryContext - the context to be saved
+/*! 
+ Saves the temporary context and propogates the change upwards to the parent context
+ @param temporaryContext - the context to be saved
  */
 - (void) saveContext:(NSManagedObjectContext*)temporaryContext {
     
@@ -247,6 +264,7 @@
     if (![temporaryContext save:&error])
     {
         // handle error
+        NSLog(@"Error saving temporary context: %@", error);
     }
     
     // save parent to disk asynchronously
@@ -254,7 +272,7 @@
         NSError *error;
         if (![temporaryContext.parentContext save:&error])
         {
-            // handle error
+            NSLog(@"Error saving main context: %@", error);
         }
     }];
     
