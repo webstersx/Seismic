@@ -59,7 +59,7 @@
  
  @see - eventsByDate
  @see - eventsByMagnitude
- @see - eventsByProximityTo:(CLLocation*)location
+ @see - eventsByDistanceFrom:(CLLocation*)location
  */
 - (NSArray*) events {
     NSFetchRequest *r = [NSFetchRequest fetchRequestWithEntityName:@"Earthquake"];
@@ -74,7 +74,7 @@
  
  @see - events
  @see - eventsByMagnitude
- @see - eventsByProximityTo:(CLLocation*)location
+ @see - eventsByDistanceFrom:(CLLocation*)location
  */
 - (NSArray*) eventsByDate {
     return [self events];
@@ -85,7 +85,7 @@
  
  @see - events
  @see - eventsByDate
- @see - eventsByProximityTo:(CLLocation*)location
+ @see - eventsByDistanceFrom:(CLLocation*)location
  */
 - (NSArray*) eventsByMagnitude {
     return [[self events] sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"magnitude" ascending:NO]]];
@@ -100,8 +100,10 @@
  @see - eventsByMagnitude
  @see - eventsByDate
  */
-- (NSArray*) eventsByProximityTo:(CLLocation*)location {
-    return [self events];
+- (NSArray*) eventsByDistanceFrom:(CLLocation*)location {
+    NSArray *events = [self events];
+    events = [events sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"distance" ascending:YES]]];
+    return events;
 }
 
 #pragma mark - Data writing
@@ -124,7 +126,7 @@
         //update the objects
         [weakSelf update:blockEvents inContext:blockContext];
         //and save + propogate changes
-        [weakSelf saveContext:context];
+        [weakSelf saveContext:blockContext];
         
     }];
 }
@@ -204,6 +206,45 @@
     
 }
 
+/**
+ Updates the distance property of all Earthquake objects in the database from the given location. NOTE: this is a blocking operation so it is suggested you execute it from a background thread.
+ @param location The location to calculate a distance from.
+ */
+- (void) updateDistanceFromLocation:(CLLocation*)location {
+    NSManagedObjectContext *context = [self temporaryContext];
+    
+    //don't create a retain cycles
+    __unsafe_unretained SeismicDB *weakSelf = self;
+    __block NSManagedObjectContext *blockContext = context;
+    
+    //do updates
+    [context performBlockAndWait:^{
+        
+        //fetch the objects
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Earthquake"];
+        NSError *error = nil;
+        NSArray *events = [blockContext executeFetchRequest:request error:&error];
+        
+        if (error) {
+            NSLog(@"Error fetching objects: %@", error);
+            return;
+        }
+        
+        for (Earthquake *event in events) {
+            CLLocation *eventLocation = [[[CLLocation alloc] initWithLatitude:event.lat.doubleValue
+                                                                    longitude:event.lon.doubleValue] autorelease];
+            
+            CLLocationDistance distance = [eventLocation distanceFromLocation:location];
+            event.distance = @(distance);
+        }
+
+        //and save + propogate changes
+        [weakSelf saveContext:blockContext];
+        
+    }];
+    
+}
+
 /*! Find the first of a specific entity in the context
  @param entity - the entity name
  @param context - the context to search in
@@ -245,7 +286,7 @@
     NSManagedObjectContext *temporaryContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
     [temporaryContext setParentContext:self.managedObjectContext];
     
-    return temporaryContext;
+    return [temporaryContext autorelease];
 }
 
 /*! 
