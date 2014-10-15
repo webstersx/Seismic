@@ -36,11 +36,22 @@
 {
     if (self = [super init])
     {
-        
+        //additional setup if required
+    }
+    
+    return self;
+}
+
+/**
+ Returns the API operation manager if it already exists or creates it first and does initial setup if necessary
+ */
+- (AFHTTPRequestOperationManager*) api {
+    
+    if (!_api) {
         NSURL *url = [NSURL URLWithString:kSeismicAPIBaseURLString];
         self.api = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:url];
         
-        //add acceptable content types since they don't specify proper header
+        //add acceptable content types since they don't specify proper headers
         AFJSONResponseSerializer *responseSerializer = [AFJSONResponseSerializer serializer];
         [responseSerializer setAcceptableContentTypes:[NSSet setWithObjects:
                                                        @"application/json",
@@ -49,7 +60,7 @@
         self.api.responseSerializer = responseSerializer;
     }
     
-    return self;
+    return _api;
 }
 
 /**
@@ -67,6 +78,15 @@
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
+}
+
+- (void) dealloc {
+    //free up the api
+    [_api.operationQueue cancelAllOperations];
+    [_api release];
+    _api = nil;
+    
+    [super dealloc];
 }
 
 @end
