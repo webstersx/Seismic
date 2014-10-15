@@ -15,6 +15,7 @@
 
 #define kSeismicListSegue @"kSeismicListSegue"
 #define kSeismicGridSegue @"kSeismicGridSegue"
+#define kSeismicMapSegue @"kSeismicMapSegue"
 
 @interface SeismicViewController ()
 
@@ -36,17 +37,20 @@
     self.title = @"Seismic";
     
     self.modes = [NSArray arrayWithObjects:
-                  @{kSeismicDataModeTitleKey:@"List - Date descending",
+                  @{kSeismicDataModeTitleKey:@"List - Most recent first",
                     kSeismicDataModeSegueKey:kSeismicListSegue,
                     kSeismicDataModeModeKey:@(kSeismicListDataModeDate)},
                   
-                  @{kSeismicDataModeTitleKey:@"List - Magnitude descending",
+                  @{kSeismicDataModeTitleKey:@"List - Strongest first",
                     kSeismicDataModeSegueKey:kSeismicListSegue,
                     kSeismicDataModeModeKey:@(kSeismicListDataModeMagnitude)},
                   
-                  @{kSeismicDataModeTitleKey:@"List - Nearest to me",
+                  @{kSeismicDataModeTitleKey:@"List - Nearest to me first",
                     kSeismicDataModeSegueKey:kSeismicListSegue,
                     kSeismicDataModeModeKey:@(kSeismicListDataModeProximity)},
+                  @{kSeismicDataModeTitleKey:@"Map",
+                    kSeismicDataModeSegueKey:kSeismicMapSegue,
+                    kSeismicDataModeModeKey:@(0)},
                   nil];
 }
 
@@ -71,12 +75,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *kCellReuseIdentifier = @"SeismicDataModeCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellReuseIdentifier forIndexPath:indexPath];
-
-    //shouldn't happen thanks to the black magic of storyboarding and prototype cells, but just in case
-    if (!cell) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                       reuseIdentifier:kCellReuseIdentifier] autorelease];
-    }
     
     //additional cell setup
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -97,10 +95,19 @@
         [self performSegueWithIdentifier:segueIdentifier sender:mode];
     } else if ([segueIdentifier isEqualToString:kSeismicGridSegue]) {
         
+    } else if ([segueIdentifier isEqualToString:kSeismicMapSegue]) {
+        [self performSegueWithIdentifier:segueIdentifier sender:nil];
     } else {
         //I don't know how to perform this segue
     }
     
+}
+
+- (void) dealloc {
+    [_modes release];
+    _modes = nil;
+    
+    [super dealloc];
 }
 
 #pragma mark - Navigation
@@ -116,8 +123,7 @@
         NSDictionary *dataMode = (NSDictionary*)sender;
         SeismicListDataMode mode = (SeismicListDataMode)[dataMode[kSeismicDataModeModeKey] integerValue];
         [listViewController setDataMode:mode];
-
-    }
+    } 
     
 }
 
