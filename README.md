@@ -4,7 +4,8 @@ Seismic
 This is a sample project which consumes and present Earthquake occurrence data from an API and various methods of visualizing that data.
 
 Time commitment:
-* **Code:** 5-6 hours
+* **Code:** 5 hours
+* **QA:** 1 hour
 * **README.md:** 1 hour
 
 
