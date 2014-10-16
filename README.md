@@ -3,6 +3,10 @@ Seismic
 
 This is a sample project which consumes and present Earthquake occurrence data from an API and various methods of visualizing that data.
 
+Time commitment:
+* **Dode:** 5-6 hours
+* **README.md:** 1 hour
+
 
 ## Components
 * **SeismicAPI:** Consumes the feed of Earthquakes in an asynchronous manner and forwards the results to the database for processing
