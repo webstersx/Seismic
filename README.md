@@ -51,6 +51,8 @@ I approached the task by trying to show a wide variety of concepts including:
 * Singletons
 * Cocoapods for 3rd party libraries
 * Core Data multi-context
+* Code blocks
+* Grand central dispatch (distpatch_async, dispatch_main)
 * Threading
 * Categories
 * Enumerations
