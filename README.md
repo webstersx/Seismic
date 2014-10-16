@@ -51,7 +51,7 @@ I approached the task by trying to show a wide variety of concepts including:
 * Singletons
 * Networking
 * Cocoapods for 3rd party libraries
-* Core Data multi-context
+* Core Data with multi-context/thread safety
 * Code blocks
 * Grand central dispatch (distpatch_async, dispatch_main)
 * Threading
@@ -71,39 +71,39 @@ Because the API was so simple, I decided to bring the data in first, save it int
 
 ## Considerations
 ### User's perspective
-The user's perspective heavily influenced how to visualize the data. We need to ask, "What would a user want to see?" The answers I gave were:
-* The most recent Earthquakes
-* The strongest Earthquakes
-* How close are they to me?
-* (Later) where was this earthquake?
+The user's perspective heavily influences how best to visualize the data. We need to ask, "What would a user want to see?" The answers I came up with were:
+* What are the most recent earthquakes?
+* What are the strongest earthquakes?
+* How close are they happening to me?
+* (Later) Where are these earthquakes on a map?
 
 ### API
-The API needed to be extremely simple to use and update.
+The API needed to be extremely simple to use and consume updates.
 
 ### Database
-The Database needed to follow the same pattern as the API -- it had to be extremely simple to use, and when sending data in it handles the multi-context threading for you.
+The Database needed to follow the same pattern as the API -- it had to be extremely simple to use, and when sending data in it handles the multi-context threading for you. Getting data out needed to be equally simple.
 
 ### Reusability
-I wanted to demonstrate the ability to reuse the relatively small number of classes in different ways. In most cases, this is handled by requesting the data in a different way, or by instantiating controllers and providing them information they need to make their decitions.
+I wanted to demonstrate the ability to reuse the relatively small number of classes in different ways. In most cases, this is handled by requesting the data with a different sort, or by instantiating controllers and providing them information they need to make their decisions of how to display themselves.
 
 ### Assertions & Unit testing
-I started off by writing a lot of assertions. Towards the end, because I had done the majority of the logic I found I wasn't requiring them as much but there were a few cases where they caught errors for me.
+I started off by writing a lot of assertions. Towards the end, because I had done the majority of the controller logic already I found I wasn't requiring them as much but there were a few cases where the ones I had already written caught errors for me.
 
-I only performed functional testing as I went, so I have not written any unit tests. All things considered, however, I do have to admit that unit tests are not my strongest suit.
+I only performed functional testing as I went, so I have not written any unit tests. All things considered, however, I do have to admit that unit tests are not my strongest suit and are a great case for further improvement and personal development.
 
 ### Memory usage
-I'ts been a long time since I've worked with a project with ARC disabled. It was interesting to find myself remembering how to do things the old way. In the end I feel like I have taken care of most of any potential memory leaks by profiling and static analysis. It was surprising to me just how often I use auto-released objects such as [NSArray arrayWithObjects:] without even thinking about it.
+It's been a long time since I've worked with a project with ARC disabled. It was interesting to find myself remembering how to do things the old way. In the end I feel like I have taken care of most of any potential memory leaks by profiling and static analysis. It was surprising to me just how often I use auto-released objects such as [NSArray arrayWithObjects:] without even thinking about it.
 
 One thing I left myself wondering about however, was the use of the SharedDateFormatter and SharedNumberFormatter in SeismicListCell -- since they're static variables they're not cleared and might leak a bit of memory -- however since there's only two of them the impact would be very small.
 
 ## Documentation
-Many complex functions have been documented to provide information about what they do, what parameters they require, what results they return and other functions to look at.
+Many complex functions have been documented to provide information about what they do, what parameters they require, what results they return and other functions which might be of interest.
 
 Some of the more complex bits of code have also been documented to explain what they're doing, provide sample API response objects, and add thoughts on better ways to achieve the desired outcomes.
 
 ### 3rd Party Libraries
 * [AFNetworking](https://github.com/AFNetworking/AFNetworking)
-* **(Not used)** [Realm](http://www.realm.io) [Realm-GitHub](https://github.com/realm/realm-cocoa)
+* **(Planned to use)** [Realm](http://www.realm.io) [Realm-GitHub](https://github.com/realm/realm-cocoa)
 
 ### Resources 
 * [Multi-context Core Data](http://www.cocoanetics.com/2012/07/multi-context-coredata/) <-- One of my favourite Objective-C articles in the last few years
