@@ -58,6 +58,8 @@ I approached the task by trying to show a wide variety of concepts including:
 * Commenting (especially comments when option-clicking on a method while in Xcode)
 * Code conciseness
 
+Because the API was so simple, I decided to bring the data in first, save it into my models and then work with the actual objects by building the UI around it. I extended the UI to a reasonable amount of functionality, then tried to polish it off with a bit of cleanup and memory management.
+
 
 ## Considerations
 ### User's perspective
@@ -96,6 +98,6 @@ Some of the more complex bits of code have also been documented to explain what 
 * **(Not used)** [Realm](http://www.realm.io) [Realm-GitHub](https://github.com/realm/realm-cocoa)
 
 ### Resources 
-* [Multi-context Core Data]() <-- One of my favourite Objective-C articles in the last few years
+* [Multi-context Core Data](http://www.cocoanetics.com/2012/07/multi-context-coredata/) <-- One of my favourite Objective-C articles in the last few years
 * [Allocations/Heapshot Analysis in Profiler](http://www.friday.com/bbum/2010/10/17/when-is-a-leak-not-a-leak-using-heapshot-analysis-to-find-undesirable-memory-growth/)
 * [Apple iOS Developer Library](https://developer.apple.com/library/ios/navigation/)
