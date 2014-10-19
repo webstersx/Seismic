@@ -19,4 +19,7 @@
 
 @property (assign, nonatomic) BOOL showDistance;
 
++ (CGFloat) height;
++ (CGFloat) estimatedHeight;
+
 @end

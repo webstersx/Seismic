@@ -93,4 +93,13 @@
     
 }
 
+//could extend this to provide it an object with which to estimate the height
++ (CGFloat) estimatedHeight {
+    return [self height];
+}
+
++ (CGFloat) height {
+    return 44.0f;
+}
+
 @end
