@@ -8,6 +8,10 @@ Time commitment:
 * **QA:** 1 hour
 * **README.md:** 1 hour
 
+Known issues:
+* Compiler warning re: Automatic Preferred Max Layout Width is not available on iOS version prior to 8.0 [Known Xcode issue related to Autolayout and labels which don't have a line limit of 1](http://stackoverflow.com/questions/25398312/automatic-preferred-max-layout-width-is-not-available-on-ios-versions-prior-to-8)
+* [Fixed] Previously had a crash bug related to multi-updating the events list with a location. Fixed by implementing a dispatch_once_token which gets reset on viewDidLoad.
+
 
 ## Components
 * **SeismicAPI:** Consumes the feed of Earthquakes in an asynchronous manner and forwards the results to the database for processing
