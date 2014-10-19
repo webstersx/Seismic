@@ -24,6 +24,9 @@
 
 @implementation SeismicListViewController
 
+//only update locations once per view load or until reset manually
+static dispatch_once_t onceToken;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -31,6 +34,9 @@
     
     [self.tableView registerNib:[UINib nibWithNibName:@"SeismicListCell" bundle:nil]
          forCellReuseIdentifier:kSeismicListCellIdentifier];
+    
+    //reset location updates
+    onceToken = false;
     
     [self loadData];
 }
@@ -118,6 +124,14 @@
     [super dealloc];
 }
 
+- (CGFloat) tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return [SeismicListCell estimatedHeight];
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return [SeismicListCell height];
+}
+
 #pragma mark - Location Services
 
 - (CLLocationManager*) locationManager {
@@ -173,6 +187,9 @@
         case kCLAuthorizationStatusAuthorizedAlways:
         case kCLAuthorizationStatusAuthorizedWhenInUse:
         {
+            //reset to allow location updates once
+            onceToken = false;
+            
             [self.locationManager startUpdatingLocation];
             break;
         }
@@ -193,25 +210,32 @@
     CLLocation *location = [locations lastObject];
     
     //decide some arbitrary precision: 10km square
-    if (location.horizontalAccuracy < 100000 &&
+    if (location.horizontalAccuracy < 10000 &&
         location.verticalAccuracy < 10000) {
         
         
         //stop checking for location, this is good enough -- don't drain the battery and free up some resources
         [self.locationManager stopUpdatingLocation];
+        self.locationManager.delegate = nil;
         [_locationManager release];
         _locationManager = nil;
         
-        [self updateEventsWithLocation:location];
         
+        //so that we only ever update with a location once unless instructed to allow resetting
+        dispatch_once(&onceToken, ^{
+            [self updateEventsWithLocation:location];
+        });
     }
     
 }
 
 - (void) updateEventsWithLocation:(CLLocation*)location {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
     [_events release];
     _events = nil;
     [self.tableView reloadData];
+    
+    __block SeismicListViewController *blockSelf = self;
     
     //push to a background thread
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -220,9 +244,9 @@
         
         //then refresh ui on main thread
         dispatch_async(dispatch_get_main_queue(), ^{
-            [_events release];
-            self.events = [[SeismicDB shared] eventsByDistanceFrom:location];
-            [self.tableView reloadData];
+            NSArray *events = [[SeismicDB shared] eventsByDistanceFrom:location];
+            [blockSelf setEvents:events];
+            [blockSelf.tableView reloadData];
         });
         
     });
