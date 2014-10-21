@@ -19,13 +19,11 @@
 @property (strong, nonatomic) NSArray *events;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (assign, nonatomic) BOOL showDistance;
+@property (assign, nonatomic) BOOL updateDistance;
 
 @end
 
 @implementation SeismicListViewController
-
-//only update locations once per view load or until reset manually
-static dispatch_once_t onceToken;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,7 +34,7 @@ static dispatch_once_t onceToken;
          forCellReuseIdentifier:kSeismicListCellIdentifier];
     
     //reset location updates
-    onceToken = false;
+    self.updateDistance = YES;
     
     [self loadData];
 }
@@ -188,9 +186,9 @@ static dispatch_once_t onceToken;
         case kCLAuthorizationStatusAuthorizedWhenInUse:
         {
             //reset to allow location updates once
-            onceToken = false;
-            
+            self.updateDistance = YES;
             [self.locationManager startUpdatingLocation];
+            
             break;
         }
             
@@ -220,17 +218,17 @@ static dispatch_once_t onceToken;
         [_locationManager release];
         _locationManager = nil;
         
-        
-        //so that we only ever update with a location once unless instructed to allow resetting
-        dispatch_once(&onceToken, ^{
-            [self updateEventsWithLocation:location];
-        });
+        [self updateEventsWithLocation:location];
     }
     
 }
 
 - (void) updateEventsWithLocation:(CLLocation*)location {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
+    if(!self.updateDistance) {
+        return;
+    }
+    self.updateDistance = NO;
+    
     [_events release];
     _events = nil;
     [self.tableView reloadData];
