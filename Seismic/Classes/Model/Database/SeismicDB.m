@@ -55,6 +55,32 @@
 
 
 #pragma mark - Data reading
+/*! Returns the Earthquake or nil if the object with provided eqid does not exist
+ 
+ @param eqid - the id of the earthquake to fetch
+ @returns the earthquake with the requested eqid or nil if it does not ext
+ */
+- (Earthquake*) earthquakeWithEqid:(NSString *)eqid {
+    NSParameterAssert(eqid);
+    
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Earthquake"];
+    request.predicate = [NSPredicate predicateWithFormat:@"eqid = %@", eqid];
+    
+    NSError *error = nil;
+    NSArray *results = [self.managedObjectContext executeFetchRequest:request error:&error];
+    
+    if (error) {
+        //handle error
+        return nil;
+    }
+    
+    if (results.count > 0) {
+        return results[0];
+    }
+    
+    return nil;
+}
+
 /*! Returns all events - not sorted
  
  @see - eventsByDate
@@ -271,6 +297,31 @@
     }
     
     return nil;
+    
+}
+
+/*! Used with Unit Tests to remove all objects to help determine Test Results
+ */
+- (void) removeAllObjects {
+    
+    NSManagedObjectContext *context = [self temporaryContext];
+    
+    [context performBlockAndWait:^{
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Earthquake"];
+        
+        NSError *error = nil;
+        NSArray *events = [context executeFetchRequest:request error:&error];
+        
+        if (!error) {
+            for (NSManagedObject *object in events) {
+                [context deleteObject:object];
+            }
+            
+            [self saveContext:context];
+        } else {
+            //handle error
+        }
+    }];
     
 }
 
